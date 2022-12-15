@@ -1,0 +1,10 @@
+{
+    "editor.tabSize": 2,
+    "files.exclude": {
+        "**/build/*": true,
+        "**/tsconfig.tsbuildinfo": true,
+        "**/.webpack*": true,
+    },
+    "workbench.colorTheme": "Tokyo Night",
+    "npm.packageManager": "yarn"
+}
