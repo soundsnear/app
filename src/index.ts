@@ -20,9 +20,11 @@ const main = async () => {
   }
 
   // todo; put this ito a function
-  await spotifyApi.transferMyPlayback(['0db621a9b5a3d427d8e3071c6562965d67fa0b01'])
+  await spotifyApi.transferMyPlayback(['6321577cc2ebabba95365334fea411cbce39cd58'])
   https://open.spotify.com/album/3qnl7vvIjow4WCe2Bl9prX?si=10c56ffe026044e4
-  await spotifyApi.addToQueue('spotify:album:3qnl7vvIjow4WCe2Bl9prX')
+
+  await spotifyApi.addToQueue('spotify:track:0vFOzaXqZHahrZp6enQwQb')
+  // await spotifyApi.addToQueue('spotify:track:0xzuKyeV52zNyjoAtRNMxD')
   // await spotifyApi.addToQueue('spotify:episode:73iBEaAYs24ttpbpg1PrZo')
   await spotifyApi.skipToNext()
   await spotifyApi.play()
