@@ -68,6 +68,9 @@ class SpotifyController:
         self.sp.add_to_queue(url)
         self.play()
         self.next()
+        self.sp.add_to_queue(url)
+        self.play()
+        self.next()
 
     def play(self):
         self.sp.transfer_playback(self.device_id, False)
