@@ -14,4 +14,4 @@ def readNtag215Data(rdr):
       stringValue = "".join(chr(e) for e in uniqueData)
       totalString = totalString + stringValue
       # print("\n" + stringValue + "\n")
-  return totalString
+  return totalString.strip()
