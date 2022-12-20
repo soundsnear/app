@@ -39,7 +39,6 @@ class TokenManager:
 class SpotifyController:
     def _find_device(self):
         print(f'Looking for device {DEVICE_NAME}')
-        print(self.sp.devices())
         for device in self.sp.devices()["devices"]:
             if device["name"] == DEVICE_NAME:
                 return device["id"]
@@ -65,12 +64,9 @@ class SpotifyController:
     
     def play_url(self, url):
         print(f'adding {url}')
-        self.sp.add_to_queue(url)
-        self.play()
-        self.next()
-        self.sp.add_to_queue(url)
-        self.play()
-        self.next()
+        payload = {'uris': [url]} if 'track' in url else {'context_uri': url}
+        url = f'me/player/play?device_id={self.device_id}'
+        self.sp._put(url, payload=payload)
 
     def play(self):
         self.sp.transfer_playback(self.device_id, False)
