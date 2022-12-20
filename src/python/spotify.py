@@ -23,7 +23,6 @@ CLIENT_SECRET = os.getenv('SPOTIFY_CLIENT_SECRET')
 REFRESH_TOKEN = os.getenv('SPOTIFY_REFRESH_TOKEN')
 DEVICE_NAME = 'raspotify (soundsnearone)'
 
-print(f'client id is {CLIENT_ID}')
 
 class TokenManager:
     def __init__(self, auth_manager, refresh_token):
@@ -64,7 +63,7 @@ class SpotifyController:
     
     def play_url(self, url):
         print(f'adding {url}')
-        payload = {'uris': [url]} if 'track' in url else {'context_uri': url}
+        payload = {'uris': [url]} if 'track' in url or 'episode' in url else {'context_uri': url}
         url = f'me/player/play?device_id={self.device_id}'
         self.sp._put(url, payload=payload)
 

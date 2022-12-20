@@ -2,6 +2,7 @@ from pirc522 import RFID
 from readntag215 import readNtag215Data
 from spotify import SpotifyController
 import requests
+import spotipy
 
 rdr = RFID()
 
@@ -26,6 +27,8 @@ while True:
             try:
               spotifyCotroller.play_url(new_url)
             except requests.exceptions.HTTPError as error:
+              print(error)
+            except spotipy.exceptions.SpotifyException as error:
               print(error)
           else:
             print('skipping')

@@ -14,5 +14,11 @@ def readNtag215Data(rdr):
       uniqueData = list(filter(lambda charCode: charCode > 0 and charCode <= 127, uniqueData))
       stringValue = "".join(chr(e) for e in uniqueData)
       totalString = totalString + stringValue
-      # print("\n" + stringValue + "\n")
+      # print("\n" + repr(stringValue) + "\n")
+      should_be_length = 16 - startIndex
+      is_at_end = len(uniqueData) < should_be_length
+      # sometimes the card has old data in later blocks. This prevents reading and appending that.
+      # TODO: read the spec and see if there are more details instructions on data length or something like that instead of this hack
+      if is_at_end:
+          break
   return totalString.strip()
