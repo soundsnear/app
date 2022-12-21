@@ -21,7 +21,7 @@ REDIRECT_URI = "http://localhost"
 CLIENT_ID = os.getenv('SPOTIFY_CLIENT_ID')
 CLIENT_SECRET = os.getenv('SPOTIFY_CLIENT_SECRET')
 REFRESH_TOKEN = os.getenv('SPOTIFY_REFRESH_TOKEN')
-DEVICE_NAME = 'raspotify (soundsnearone)'
+DEVICE_NAME = 'soundsnearone'
 
 
 class TokenManager:

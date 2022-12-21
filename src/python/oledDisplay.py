@@ -4,14 +4,17 @@ from luma.oled.device import ssd1351
 from pathlib import Path
 from PIL import Image
 import time
+import requests
+import io
 
-root_image_path="/home/tyler/playground/luma.examples/examples/images"
-filename="ab67616d00001e02cdf367607728e48fc580a6f9"
-#filename="pi_logo.png"
+serial = spi(device=1, port=0, gpio_DC=27, gpio_RST=22, bus_speed_hz=16000000)
+device = ssd1351(serial, bgr=True, width=128, height=128)
+ 
 
-def main():
-    img_path = str(Path(__file__).resolve().parent.joinpath(root_image_path, filename))
-    img = Image.open(img_path).convert("RGBA") \
+def display_image_url(image_url):
+    r = requests.get(image_url)
+    file_handle = io.BytesIO(r.content)
+    img = Image.open(file_handle).convert("RGBA") \
       .resize((device.height,device.width), Image.Resampling.LANCZOS) \
       .transform(device.size, Image.Transform.AFFINE, (1, 0, 0, 0, 1, 0), Image.Resampling.BILINEAR) \
       .convert(device.mode)
