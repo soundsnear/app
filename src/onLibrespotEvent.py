@@ -26,5 +26,5 @@ if eventName == 'changed' or eventName == 'playing':
     display_size=128
     closest_target_image=next((x for x in images if  x['width'] > display_size), None)
     print(closest_target_image)
-    display_image_url(closest_target_image['url'])
+#    display_image_url(closest_target_image['url'])
 
