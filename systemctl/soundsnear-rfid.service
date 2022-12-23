@@ -1,0 +1,19 @@
+[Unit]
+Description=RFID tag detection for soundsnear music player
+Wants=network.target sound.target
+After=network.target sound.target
+PartOf=soundsnear-server.service
+
+[Service]
+User=tyler
+DynamicUser=yes
+SupplementaryGroups=audio
+Restart=always
+RestartSec=10
+ExecStart=/usr/bin/python /home/tyler/app/src/rfid.py
+Environment="PYTHONPATH=$PYTHONPATH"
+ReadWriteDirectories=/home/tyler
+ReadWriteDirectories=/home/tyler/app/src
+
+[Install]
+WantedBy=multi-user.target

@@ -1,14 +1,17 @@
 from pirc522 import RFID
 from readntag215 import readNtag215Data
-from spotify import SpotifyController
 import requests
-import spotipy
 
 rdr = RFID()
-
-spotifyCotroller = SpotifyController()
-
 the_last_url = ""
+play_url = 'http://localhost:5000/play'
+
+def play(uri):
+  headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+  try:
+    response = requests.post(play_url, json = {'play_uri': uri}, headers=headers)
+  except requests.exceptions.HTTPError as error:
+    print(error)
 
 while True:
   rdr.wait_for_tag()
@@ -24,12 +27,7 @@ while True:
           if new_url != the_last_url:
             print(f'playing {new_url}')
             the_last_url = new_url
-            try:
-              spotifyCotroller.play_url(new_url)
-            except requests.exceptions.HTTPError as error:
-              print(error)
-            except spotipy.exceptions.SpotifyException as error:
-              print(error)
+            play(new_url)
           else:
             print('skipping')
           # Always stop crypto1 when done working

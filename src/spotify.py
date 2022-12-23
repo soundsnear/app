@@ -4,6 +4,7 @@ import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 from dotenv import load_dotenv
 import os
+import time
 
 load_dotenv()
 
@@ -53,6 +54,8 @@ class SpotifyController:
         self.device_id = None
         while self.device_id is None:
             self.device_id = self._find_device()
+            print(f"device_id {self.device_id}")
+            time.sleep(1)
 
     def get_progress_ms(self):
         return self.sp.currently_playing()["progress_ms"]

@@ -1,0 +1,18 @@
+[Unit]
+Description=Server for soundsnear music player
+Wants=librespot.service
+Wants=soundsnear-rfid.service
+
+[Service]
+User=tyler
+DynamicUser=yes
+SupplementaryGroups=audio
+Restart=always
+RestartSec=10
+ExecStart=/usr/bin/python /home/tyler/app/src/server.py
+Environment="PYTHONPATH=$PYTHONPATH"
+ReadWriteDirectories=/home/tyler
+ReadWriteDirectories=/home/tyler/app/src
+
+[Install]
+WantedBy=multi-user.target

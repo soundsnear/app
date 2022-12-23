@@ -4,6 +4,7 @@ Documentation=https://github.com/librespot-org/librespot
 Documentation=https://github.com/librespot-org/librespot/wiki/Options
 Wants=network.target sound.target
 After=network.target sound.target
+PartOf=soundsnear-server.service
 
 [Service]
 User=tyler
@@ -11,11 +12,10 @@ DynamicUser=yes
 SupplementaryGroups=audio
 Restart=always
 RestartSec=10
-ExecStart=/usr/bin/librespot --name soundsnearone --onevent=/home/tyler/app/src/python/onLibrespotEvent.py
+ExecStart=/usr/bin/librespot --name soundsnearone --onevent=/home/tyler/app/src/onLibrespotEvent.py --username 12131409190 --password notthistime
 Environment="PYTHONPATH=$PYTHONPATH:/home/nvidia/.local/lib/python3.6/site-packages"
 ReadWriteDirectories=/home/tyler
-ReadWRiteDirectories=/home/tyler/app/src/python
-#ReadWRiteDirectories=/usr/bin
+ReadWriteDirectories=/home/tyler/app/src
 
 [Install]
 WantedBy=multi-user.target
