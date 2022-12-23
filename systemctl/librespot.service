@@ -12,7 +12,7 @@ DynamicUser=yes
 SupplementaryGroups=audio
 Restart=always
 RestartSec=10
-ExecStart=/usr/bin/librespot --name soundsnearone --onevent=/home/tyler/app/src/onLibrespotEvent.py --username 12131409190 --password notthistime
+ExecStart=/home/tyler/app/src/runLibrespot.sh
 Environment="PYTHONPATH=$PYTHONPATH:/home/nvidia/.local/lib/python3.6/site-packages"
 ReadWriteDirectories=/home/tyler
 ReadWriteDirectories=/home/tyler/app/src
