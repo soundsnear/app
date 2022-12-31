@@ -134,7 +134,8 @@ def usage():
 
 
 def set_speaker_volume(level):
-    set_mixer('Speaker', level, {'cardindex': 1})
+    mixer = alsaaudio.Mixer('Speaker', {'cardindex': 1})
+    mixer.setvolume(level, alsaaudio.MIXER_CHANNEL_ALL)
 
 
 
@@ -150,8 +151,8 @@ if __name__ == '__main__':
         else:
             usage()
 
-    list_cards()
-    print(kwargs)
+    # list_cards()
+    # print(kwargs)
     if not len(args):
         list_mixers(kwargs)
     elif len(args) == 1:

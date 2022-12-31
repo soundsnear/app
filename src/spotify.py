@@ -66,12 +66,19 @@ class SpotifyController:
     
     def play_url(self, url):
         print(f'adding {url}')
-        payload = {'uris': [url]} if 'track' in url or 'episode' in url else {'context_uri': url}
-        url = f'me/player/play?device_id={self.device_id}'
-        self.sp._put(url, payload=payload)
+        # payload = {'uris': [url]} if 'track' in url or 'episode' in url else {'context_uri': url}
+        # url = f'me/player/play?device_id={self.device_id}'
+        # self.sp._put(url, payload=payload)
+        if 'track' in url or 'episode' in url :
+            self.sp.start_playback(device_id=self.device_id, uris=[url] )
+        else:
+            self.sp.start_playback(device_id=self.device_id, context_uri=url)
+        
+        # control volume using local mixer only
+        self.sp.volume(100)
 
-    def play(self):
-        self.sp.transfer_playback(self.device_id, False)
+    def play(self, force=False):
+        self.sp.transfer_playback(self.device_id, force)
 
     def pause(self):
         self.sp.pause_playback(self.device_id)
